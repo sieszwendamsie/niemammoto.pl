@@ -1,3 +1,18 @@
+// Helper function to format dates consistently
+function formatDateForAPI(date) {
+    if (!date || !(date instanceof Date)) {
+        console.error('Invalid date provided to formatDateForAPI:', date);
+        return null;
+    }
+    
+    // Ensure we get YYYY-MM-DD format
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    
+    return `${year}-${month}-${day}`;
+}
+
 // Motorcycle data with complete information
 const motorcycles = [
     {
@@ -1157,10 +1172,19 @@ async function handleFormSubmit(event) {
     }
     
     // Prepare data for backend API
+    const formattedStartDate = formatDateForAPI(selectedStartDate);
+    const formattedEndDate = formatDateForAPI(selectedEndDate);
+    
+    if (!formattedStartDate || !formattedEndDate) {
+        console.error('Failed to format dates:', { selectedStartDate, selectedEndDate });
+        alert('Błąd w formatowaniu dat. Spróbuj ponownie.');
+        return;
+    }
+    
     const reservationData = {
         motorcycleName: currentMotorcycle.name,
-        startDate: selectedStartDate.toLocaleDateString('pl-PL'),
-        endDate: selectedEndDate.toLocaleDateString('pl-PL'),
+        startDate: formattedStartDate,
+        endDate: formattedEndDate,
         days: days,
         firstName: data.firstName,
         lastName: data.lastName,
@@ -1177,6 +1201,17 @@ async function handleFormSubmit(event) {
     // Send reservation to backend API
     try {
         const apiUrl = window.appConfig ? window.appConfig.getApiUrl() : 'http://localhost:3000/api/reservations';
+        
+        // Debug logging for date formats
+        console.log('Sending reservation data:', {
+            startDate: reservationData.startDate,
+            endDate: reservationData.endDate,
+            startDateType: typeof reservationData.startDate,
+            endDateType: typeof reservationData.endDate,
+            originalStartDate: selectedStartDate,
+            originalEndDate: selectedEndDate
+        });
+        
         const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
@@ -1210,7 +1245,43 @@ async function handleFormSubmit(event) {
         }
     } catch (error) {
         console.error('Error sending reservation:', error);
-        alert('Wystąpił błąd podczas wysyłania rezerwacji: ' + error.message);
+        
+        // More user-friendly error handling
+        let errorMessage = 'Wystąpił błąd podczas wysyłania rezerwacji.';
+        
+        if (error.message.includes('fetch')) {
+            errorMessage = 'Nie można połączyć się z serwerem. Sprawdź połączenie internetowe i spróbuj ponownie.';
+        } else if (error.message.includes('400')) {
+            errorMessage = 'Błąd w danych rezerwacji. Sprawdź poprawność wprowadzonych informacji.';
+        } else if (error.message.includes('500')) {
+            errorMessage = 'Błąd serwera. Spróbuj ponownie za kilka minut.';
+        } else if (error.message) {
+            errorMessage = error.message;
+        }
+        
+        // Show error in a more user-friendly way
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.innerHTML = `
+            <div style="background: #fee; border: 1px solid #fcc; padding: 15px; margin: 10px 0; border-radius: 5px; color: #c33;">
+                <strong>Błąd:</strong> ${errorMessage}
+                <br><small>Jeśli problem się powtarza, skontaktuj się z nami telefonicznie.</small>
+            </div>
+        `;
+        
+        // Insert error message before the form
+        const form = document.getElementById('reservationForm');
+        if (form) {
+            form.insertBefore(errorDiv, form.firstChild);
+            
+            // Remove error message after 10 seconds
+            setTimeout(() => {
+                if (errorDiv.parentNode) {
+                    errorDiv.parentNode.removeChild(errorDiv);
+                }
+            }, 10000);
+        }
+        
         return;
     }
 
