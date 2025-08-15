@@ -22,9 +22,9 @@ const motorcycles = [
             "Masa": "196 kg",
             "Zbiornik paliwa": "20 l",
             "Wysokość kanapy": "880 mm",
-            "Typ silnika": "2-cylindrowy, 4-suwowy"
+            "Typ silnika": "rzędowy, 2-cylindrowy, 4-suwowy"
         },
-        conditions: ["Minimum 21 lat", "Prawo jazdy kat. A", "Depozyt: 3000 zł"]
+        conditions: ["Minimum 24 lata", "Prawo jazdy kat. A", "Depozyt: 2000 zł"]
     },
     {
         id: 2,
@@ -36,7 +36,7 @@ const motorcycles = [
 			"images/IMG_5433.JPEG",
 			"images/IMG_5442.JPEG",
         ],
-        category: "Adventure",
+        category: "Adventure Road",
         engine: "1170cc",
         power: "125KM",
         description: "Legendarny motocykl adventure gotowy na każdą trasę. Idealny do długich podróży po asfalcie.",
@@ -52,7 +52,7 @@ const motorcycles = [
             "Wysokość siodełka": "850/870 mm",
             "Typ silnika": "2-cylindrowy boxer"
         },
-        conditions: ["Minimum 25 lat", "Prawo jazdy kat. A", "Depozyt: 4000 zł"]
+        conditions: ["Minimum 24 lata", "Prawo jazdy kat. A", "Depozyt: 2000 zł"]
     },
     {
         id: 3,
@@ -78,7 +78,7 @@ const motorcycles = [
             "Typ silnika": "1-cylindrowy, 4-suwowy",
 			"Elektronika": "kontrola trakcji, mapy silnika"
         },
-        conditions: ["Minimum 21 lat", "Prawo jazdy kat. A", "Depozyt: 3000 zł"]
+        conditions: ["Minimum 24 lata", "Prawo jazdy kat. A", "Depozyt: 2000 zł"]
     },
     {
         id: 4,
