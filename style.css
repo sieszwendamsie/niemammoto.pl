@@ -842,9 +842,9 @@ select.form-control {
 }
 
 .hero__logo {
-  height: 220px;
+  height: 275px;
   width: auto;
-  max-width: 330px;
+  max-width: 412.5px;
   object-fit: contain;
   /* Make background transparent - try different blend modes */
   mix-blend-mode: darken;
@@ -959,15 +959,15 @@ select.form-control {
   }
   
   .hero__logo {
-    height: 150px;
-    max-width: 250px;
+    height: 187.5px;
+    max-width: 312.5px;
   }
 }
 
 @media (max-width: 480px) {
   .hero__logo {
-    height: 120px;
-    max-width: 200px;
+    height: 150px;
+    max-width: 250px;
   }
 }
 

@@ -93,7 +93,7 @@ const motorcycles = [
         extendedDescription: "SurRon Light Bee 1LE to innowacyjny, elektryczny motocykl, który łączy w sobie wyjątkową zwrotność i ekologiczną technologię. Doskonale sprawdzi się zarówno w mieście, jak i na nierównym terenie dzięki lekkiej konstrukcji i mocnemu silnikowi elektrycznemu. Jego nowoczesny design i łatwość obsługi czynią go idealnym wyborem dla osób szukających dynamicznej, cichej jazdy bez emisji spalin. Bateria o dużej pojemności zapewnia satysfakcjonujący zasięg, a szybkie ładowanie umożliwia sprawne użytkowanie na co dzień.",
         basePrice: 300,
         price: "od 90 zł / dzień",
-        features: ["Na prawo jazdy kat. B", "Elektryczn, cichy napęd", "LED"],
+        features: ["Na prawo jazdy kat. B", "Elektryczny, cichy napęd", "LED"],
         specifications: {
             "Moc": "3 kW",
             "Max prędkość": "60km/h",
