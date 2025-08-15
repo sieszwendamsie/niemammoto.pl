@@ -8,7 +8,7 @@ const motorcycles = [
 			"images/IMG_4060.JPEG",
 			"images/IMG_4062.JPEG"
         ],
-        category: "Adventure off-road",
+        category: "Adventure Enduro",
         engine: "889cc",
         power: "105KM", 
         description: "Motocykl adventure enduro stworzony do podróży w każdym terenie. Dynamiczny, lekki i gotowy na długie wyprawy.",
