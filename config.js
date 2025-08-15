@@ -5,13 +5,13 @@ const config = {
         apiEndpoint: '/api/reservations'
     },
     production: {
-        backendUrl: 'https://niemammoto-backend.herokuapp.com', // Update this with your actual backend URL
+        backendUrl: 'https://api.niemammoto.pl', // Update this with your actual backend URL
         apiEndpoint: '/api/reservations'
     }
 };
 
 // For browser environment, always use development config
-const currentConfig = config.development;
+const currentConfig = config.production;
 
 // Function to get full API URL
 function getApiUrl() {
