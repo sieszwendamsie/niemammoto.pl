@@ -36,7 +36,7 @@ const motorcycles = [
 			"images/IMG_5433.JPEG",
 			"images/IMG_5442.JPEG",
         ],
-        category: "Adventure Road",
+        category: "Adventure",
         engine: "1170cc",
         power: "125KM",
         description: "Legendarny motocykl adventure gotowy na każdą trasę. Idealny do długich podróży po asfalcie.",
