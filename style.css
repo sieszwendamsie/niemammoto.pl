@@ -1009,6 +1009,9 @@ select.form-control {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: var(--space-24);
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .motorcycle-card {
@@ -1018,11 +1021,40 @@ select.form-control {
   box-shadow: var(--shadow-sm);
   overflow: hidden;
   transition: all var(--duration-normal) var(--ease-standard);
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .motorcycle-card:hover {
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
+}
+
+/* Responsive grid layouts for symmetrical positioning */
+@media (min-width: 1200px) {
+  .gallery__grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+  }
+}
+
+@media (max-width: 767px) {
+  .gallery__grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+  
+  .motorcycle-card {
+    max-width: 100%;
+  }
 }
 
 /* Image Container with Navigation */
@@ -1782,9 +1814,7 @@ select.form-control {
     font-size: var(--font-size-3xl);
   }
   
-  .gallery__grid {
-    grid-template-columns: 1fr;
-  }
+  /* Gallery grid is now handled by dedicated responsive breakpoints above */
   
   .form-row {
     grid-template-columns: 1fr;
