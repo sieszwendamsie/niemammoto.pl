@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nie Mam Moto - Wypożyczalnia Motocykli</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <h1 class="nav__brand">NIE MASZ MOTO? Dobrze trafiłeś!</h1>
+                <div class="nav__links">
+                    <a href="#gallery">Motocykle</a>
+                    <a href="#contact">Kontakt</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero__content">
+                <div class="hero__logo-section">
+                    <a href="#" class="hero__logo-link">
+                        <img src="images/logo.PNG" alt="Nie Mam Moto Logo" class="hero__logo">
+                    </a>
+                </div>
+                <div class="hero__text-section">
+                    <h2 class="hero__title">Twoja przygoda na dwóch kółkach zaczyna się tutaj</h2>
+                    <p class="hero__description">Oferujemy szeroki wybór motocykli adventure i enduro przygotowanych na każdą trasę – od górskich szlaków po dalekie, off‑roadowe wyprawy. Nasze maszyny łączą moc, wytrzymałość i komfort, by towarzyszyć Ci w niezapomnianych przygodach. Wskocz w siodło i odkryj świat z zupełnie nowej perspektywy!</p>
+                    <a href="#gallery" class="btn btn--primary btn--lg">Zobacz Motocykle</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="gallery__title">Nasze Motocykle</h2>
+            <p class="gallery__subtitle">Wybierz swój idealny motocykl na wynajem</p>
+            
+            <div class="gallery__grid" id="motorcycleGrid">
+                <!-- Motorcycles will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="contact__title">Kontakt</h2>
+            <div class="contact__info">
+                <div class="contact__item">
+                    <h3>Telefon</h3>
+                    <p>+48 725 771 116</p>
+                </div>
+                <div class="contact__item">
+                    <h3>Email</h3>
+                    <p>kontakt@niemammoto.pl</p>
+                </div>
+                <div class="contact__item">
+                    <h3>Adres</h3>
+                    <p>ul. Jesionowa 11<br>62-004 Czerwonak</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Motorcycle Details Modal -->
+    <div id="motorcycleDetailsModal" class="modal hidden">
+        <div class="modal__overlay" id="detailsModalOverlay"></div>
+        <div class="modal__content modal__content--large">
+            <div class="modal__header">
+                <h3 class="modal__title" id="detailsModalTitle">Szczegóły Motocykla</h3>
+                <button class="modal__close" id="closeDetailsModal">&times;</button>
+            </div>
+            
+            <div class="modal__body">
+                <div id="motorcycleDetailsContent">
+                    <!-- Motorcycle details will be populated by JavaScript -->
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn--primary btn--full-width" id="reserveFromDetails">Zarezerwuj ten motocykl</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reservation Modal -->
+    <div id="reservationModal" class="modal hidden">
+        <div class="modal__overlay" id="modalOverlay"></div>
+        <div class="modal__content modal__content--large">
+            <div class="modal__header">
+                <h3 class="modal__title">Rezerwacja Motocykla</h3>
+                <button class="modal__close" id="closeModal">&times;</button>
+            </div>
+            
+            <div class="modal__body">
+                <div class="selected-motorcycle" id="selectedMotorcycle">
+                    <!-- Selected motorcycle info will be populated by JavaScript -->
+                </div>
+
+                <form id="reservationForm" class="reservation-form">
+                    <div class="form-section">
+                        <h4>Okres wynajmu</h4>
+                        <div class="calendar-container">
+                            <div class="calendar-header">
+                                <button type="button" class="calendar-nav" id="prevMonth">&lt;</button>
+                                <h5 id="currentMonth"></h5>
+                                <button type="button" class="calendar-nav" id="nextMonth">&gt;</button>
+                            </div>
+                            <div class="calendar-grid" id="calendarGrid">
+                                <!-- Calendar will be populated by JavaScript -->
+                            </div>
+                            <div class="selected-dates" id="selectedDates">
+                                <p>Wybierz datę rozpoczęcia i zakończenia wypożyczenia</p>
+                            </div>
+                            <div class="price-calculation" id="priceCalculation">
+                                <!-- Price calculation will be shown here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Wybór godzin</h4>
+                        <div class="time-selection">
+                            <div class="time-inputs">
+                                <div class="time-input-group">
+                                    <label for="pickupTime">Godzina odbioru *</label>
+                                    <select id="pickupTime" name="pickupTime" class="form-control" required>
+                                        <option value="">Wybierz godzinę</option>
+                                    </select>
+                                </div>
+                                <div class="time-input-group">
+                                    <label for="returnTime">Godzina zwrotu *</label>
+                                    <select id="returnTime" name="returnTime" class="form-control" required>
+                                        <option value="">Wybierz godzinę</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="time-info">
+                                <p><strong>Informacja:</strong> Wybór godzin jest <strong>obowiązkowy</strong>. Musisz wybrać godziny odbioru i zwrotu, aby kontynuować rezerwację.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Dane osobowe</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="firstName">Imię *</label>
+                                <input type="text" id="firstName" name="firstName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="lastName">Nazwisko *</label>
+                                <input type="text" id="lastName" name="lastName" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Dane kontaktowe</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="email">Email *</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="phone">Telefon *</label>
+                                <input type="tel" id="phone" name="phone" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn--outline" id="cancelReservation">Anuluj</button>
+                        <button type="submit" class="btn btn--primary">Wyślij Rezerwację</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Message Modal -->
+    <div id="successModal" class="modal hidden">
+        <div class="modal__overlay"></div>
+        <div class="modal__content modal__content--small">
+            <div class="modal__header">
+                <h3 class="modal__title">Rezerwacja Wysłana!</h3>
+                <button class="modal__close" id="closeSuccessModal">&times;</button>
+            </div>
+            <div class="modal__body">
+                <div class="success-message">
+                    <p>Dziękujemy za wysłanie rezerwacji! Skontaktujemy się z Państwem w ciągu 24 godzin w celu potwierdzenia szczegółów.</p>
+                    <div id="reservationSummary" class="reservation-summary">
+                        <!-- Reservation details will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn--primary btn--full-width" id="closeSuccess">Zamknij</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
