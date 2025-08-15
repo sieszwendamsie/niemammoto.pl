@@ -966,8 +966,8 @@ select.form-control {
 
 @media (max-width: 480px) {
   .hero__logo {
-    height: 150px;
-    max-width: 250px;
+    height: 200px;
+    max-width: 300px;
   }
 }
 
